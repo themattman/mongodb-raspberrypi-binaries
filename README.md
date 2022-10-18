@@ -98,8 +98,8 @@ $ \time --verbose ninja -f aarch64_gcc_s.ninja -j$(($(grep -c processor /proc/cp
 ```
 # Using wget assumes network connection. Can also copy with USB.
 $ mkdir ~/mdb-binaries && cd ~/mdb-binaries
-$ wget https://raw.githubusercontent.com/themattman/mongodb-raspberrypi-binaries/main/r6.1.0-rc4/mongodb.ce.r6.1.0-rc4.tar.gz
-$ tar xzvf mongodb.ce.r6.1.0-rc4.tar.gz # Decompress tarball
+$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.1.0-rc4-rpi-unofficial/mongodb.ce.pi.r6.1.0-rc4.tar.gz
+$ tar xzvf mongodb.ce.pi.r6.1.0-rc4.tar.gz # Decompress tarball
 
 # Prepare MongoDB data & log directories
 $ mkdir -p /data/db/ts_test_db
