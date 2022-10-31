@@ -10,7 +10,7 @@ support these binaries.
 
 ## Motivation
 
-Time-Series Collections are a relatively new MongoDB feature that provide a
+[Time-Series Collections](https://www.mongodb.com/docs/v6.0/core/timeseries-collections/) are a relatively new MongoDB feature that provide a
 
 meaningful improvement for common embedded workloads, like sensor aggregation on
 
@@ -80,11 +80,19 @@ $ python -m pip install keyring jsonschema memory_profiler puremagic networkx cx
 # CXX: C++ compiler
 
 # Should take less than a minute.
-$ \time --verbose python3 buildscripts/scons.py -j$(($(grep -c processor /proc/cpuinfo)-1)) AR=/usr/bin/aarch64-linux-gnu-ar CC=/usr/bin/aarch64-linux-gnu-gcc-8 CXX=/usr/bin/aarch64-linux-gnu-g++-8 CCFLAGS="-march=armv8-a+crc -mtune=cortex-a72" --dbg=off --opt=on --link-model=static --disable-warnings-as-errors --ninja generate-ninja NINJA_PREFIX=aarch64_gcc_s"
+$ \time --verbose python3 buildscripts/scons.py -j$(($(grep -c processor /proc/cpuinfo)-1)) AR=/usr/bin/aarch64-linux-gnu-ar CC=/usr/bin/aarch64-linux-gnu-gcc-8 CXX=/usr/bin/aarch64-linux-gnu-g++-8 CCFLAGS="-march=armv8-a+crc -mtune=cortex-a72" --dbg=off --opt=on --link-model=static --disable-warnings-as-errors --ninja generate-ninja NINJA_PREFIX=aarch64_gcc_s
 
 # Will take several hours and depends heavily on your machine's capabilities. Almost 4 hours on my machine.
 $ \time --verbose ninja -f aarch64_gcc_s.ninja -j$(($(grep -c processor /proc/cpuinfo)-1)) install-devcore # For MongoDB 6.x+
 $ \time --verbose ninja -f aarch64_gcc_s.ninja -j$(($(grep -c processor /proc/cpuinfo)-1)) install-core    # For MongoDB 5.x
+
+# Minimize size of executables for embedded use by removing symbols
+$ aarch64-linux-gnu-strip build/install/bin/mongo -o build/install/bin/mongo.stripped
+$ aarch64-linux-gnu-strip build/install/bin/mongod -o build/install/bin/mongod.stripped
+$ aarch64-linux-gnu-strip build/install/bin/mongos -o build/install/bin/mongos.stripped
+
+# Generate release (on Mac OS)
+$ tar --gname root --uname root -czvf mongodb.ce.pi.rX.Y.Z-rcA.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
 ```
 
 ## Installing on Raspberry Pi
@@ -93,7 +101,7 @@ $ \time --verbose ninja -f aarch64_gcc_s.ninja -j$(($(grep -c processor /proc/cp
 
 - Ensure a [64-bit Raspberry Pi OS](https://www.raspberrypi.com/software/operating-systems/) has been installed on the Pi.
 
-  - Raspbian is 32-bit by default for maximum compatability.
+  - Raspbian is 32-bit by default for maximum compatibility.
 
 ```
 # Using wget assumes network connection. Can also copy with USB.
