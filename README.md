@@ -20,9 +20,17 @@ a Raspberry Pi. Prior to this repo, users were required to build from source.
 
 MongoDB requires ARMv8.2-A+ [microarchitecture support](https://www.mongodb.com/docs/manual/administration/production-notes/#std-label-prod-notes-platform-considerations) as of MongoDB 5.0+.
 
-These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r6.1.0-rc4/LICENSE-Community.txt).
+These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r6.2.0/LICENSE-Community.txt).
 
 ## Releases
+
+- _r6.2.0_ [January 12, 2023]
+
+  - mongo  - legacy MongoDB shell
+
+  - mongod - MongoDB Community Edition Server
+
+  - mongos - MongoDB Query Router - for [Sharded Clusters](https://www.mongodb.com/docs/manual/sharding/)
 
 - _r6.1.0-rc4_ [October 3, 2022]
 
@@ -63,8 +71,8 @@ $ sudo apt-get install -y libssl-dev:arm64 libcurl4-openssl-dev:arm64 liblzma-de
 
 # MongoDB Instructions
 
-$ git clone -b r6.1.0-rc4 git@github.com:mongodb/mongo.git r6.1.0-rc4
-$ cd r6.1.0-rc4
+$ git clone -b r6.2.0 git@github.com:mongodb/mongo.git r6.2.0
+$ cd r6.2.0
 $ python3 -m venv python3-venv
 $ source python3-venv/bin/activate
 $ python -m pip install "pip==21.0.1"
@@ -87,12 +95,15 @@ $ \time --verbose ninja -f aarch64_gcc_s.ninja -j$(($(grep -c processor /proc/cp
 $ \time --verbose ninja -f aarch64_gcc_s.ninja -j$(($(grep -c processor /proc/cpuinfo)-1)) install-core    # For MongoDB 5.x
 
 # Minimize size of executables for embedded use by removing symbols
-$ aarch64-linux-gnu-strip build/install/bin/mongo -o build/install/bin/mongo.stripped
-$ aarch64-linux-gnu-strip build/install/bin/mongod -o build/install/bin/mongod.stripped
-$ aarch64-linux-gnu-strip build/install/bin/mongos -o build/install/bin/mongos.stripped
+$ mv build/install/bin/mongo build/install/bin/mongo.debug
+$ mv build/install/bin/mongod build/install/bin/mongod.debug
+$ mv build/install/bin/mongos build/install/bin/mongos.debug
+$ aarch64-linux-gnu-strip build/install/bin/mongo.debug -o build/install/bin/mongo
+$ aarch64-linux-gnu-strip build/install/bin/mongod.debug -o build/install/bin/mongod
+$ aarch64-linux-gnu-strip build/install/bin/mongos.debug -o build/install/bin/mongos
 
 # Generate release (on Mac OS)
-$ tar --gname root --uname root -czvf mongodb.ce.pi.rX.Y.Z-rcA.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
+$ tar --gname root --uname root -czvf mongodb.ce.pi.r6.2.0.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
 ```
 
 ## Installing on Raspberry Pi
@@ -106,8 +117,8 @@ $ tar --gname root --uname root -czvf mongodb.ce.pi.rX.Y.Z-rcA.tar.gz LICENSE-Co
 ```
 # Using wget assumes network connection. Can also copy with USB.
 $ mkdir ~/mdb-binaries && cd ~/mdb-binaries
-$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.1.0-rc4-rpi-unofficial/mongodb.ce.pi.r6.1.0-rc4.tar.gz
-$ tar xzvf mongodb.ce.pi.r6.1.0-rc4.tar.gz # Decompress tarball
+$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.2.0-rpi-unofficial/mongodb.ce.pi.r6.2.0.tar.gz
+$ tar xzvf mongodb.ce.pi.r6.2.0.tar.gz # Decompress tarball
 
 # Prepare MongoDB data & log directories
 $ mkdir -p /data/db/ts_test_db
