@@ -24,6 +24,9 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
+**MongoDB (please complete the following information):**
+  - Version: [e.g. 6.2.0]
+
 **Raspberry Pi Device (please complete the following information):**
  - Raspberry Pi Hardware Version: [e.g. 4B]
  - OS: [e.g. Raspberry Pi OS, Debian]
