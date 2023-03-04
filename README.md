@@ -24,7 +24,7 @@ These binaries are subject to the [MongoDB Server-Side Public License](https://g
 
 ## Releases
 
-- _r6.2.0_ [January 12, 2023]
+- [_r6.2.0_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.2.0-rpi-unofficial) [January 12, 2023]
 
   - mongo  - legacy MongoDB shell
 
@@ -32,7 +32,7 @@ These binaries are subject to the [MongoDB Server-Side Public License](https://g
 
   - mongos - MongoDB Query Router - for [Sharded Clusters](https://www.mongodb.com/docs/manual/sharding/)
 
-- _r6.1.0-rc4_ [October 3, 2022]
+- [_r6.1.0-rc4_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.1.0-rc4-rpi-unofficial) [October 3, 2022]
 
   - mongo  - legacy MongoDB shell
 
