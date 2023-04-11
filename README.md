@@ -2,57 +2,34 @@
 
 ## Overview
 
-These are a best-effort attempt to create binaries of the MongoDB Community
-
-Edition Server for the Raspberry Pi ecosystem. MongoDB Inc does not officially
-
-support these binaries.
+These are a best-effort attempt to create binaries of the MongoDB Community Edition Server for the Raspberry Pi ecosystem. MongoDB Inc does not officially support these binaries.
 
 ## Motivation
 
-[Time-Series Collections](https://www.mongodb.com/docs/v6.0/core/timeseries-collections/) are a relatively new MongoDB feature that provide a
-
-meaningful improvement for common embedded workloads, like sensor aggregation on
-
-a Raspberry Pi. Prior to this repo, users were required to build from source.
+[Time-Series Collections](https://www.mongodb.com/docs/v6.0/core/timeseries-collections/) are a relatively new MongoDB feature that provide a meaningful improvement for common embedded workloads, like sensor aggregation on a Raspberry Pi. Prior to this repo, users were required to build from source.
 
 ## Notes
 
 MongoDB requires ARMv8.2-A+ [microarchitecture support](https://www.mongodb.com/docs/manual/administration/production-notes/#std-label-prod-notes-platform-considerations) as of MongoDB 5.0+.
 
-These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r6.2.0/LICENSE-Community.txt).
+These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r6.0.5/LICENSE-Community.txt).
 
 ## Releases
 
+- [_r6.0.5_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.5-rpi-unofficial) [April 10, 2023]
+
 - [_r6.2.0_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.2.0-rpi-unofficial) [January 12, 2023]
-
-  - mongo  - legacy MongoDB shell
-
-  - mongod - MongoDB Community Edition Server
-
-  - mongos - MongoDB Query Router - for [Sharded Clusters](https://www.mongodb.com/docs/manual/sharding/)
 
 - [_r6.1.0-rc4_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.1.0-rc4-rpi-unofficial) [October 3, 2022]
 
-  - mongo  - legacy MongoDB shell
-
-  - mongod - MongoDB Community Edition Server
-
-  - mongos - MongoDB Query Router - for [Sharded Clusters](https://www.mongodb.com/docs/manual/sharding/)
 
 ## Reproduction Build Instructions
 
-Instructions are for an Ubuntu 20.04 (focal) build environment. Ubuntu 18.04 was
+- Instructions are for an Ubuntu 20.04 (focal) build environment. Ubuntu 18.04 was notably more difficult on my first attempt.
 
-notably more difficult on my first attempt.
+- Built using [WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) on Windows 10 with Intel Kaby Lake i7 CPU & 16GB RAM.
 
-Built using [WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) on Windows 10 with Intel Kaby Lake i7 CPU & 16GB RAM.
-
-Due to the hassle of installing special packages, it is recommended to set up
-
-a custom build environment using a VM, LXC container, Docker container, WSL,
-
-etc.
+- Due to the hassle of installing special packages, it is recommended to set up a custom build environment using a VM, LXC container, Docker container, WSL, etc.
 
 ```
 # Arm-Specific Cross-Compilation Instructions
@@ -66,13 +43,14 @@ deb [arch=arm64] http://ports.ubuntu.com/ focal-updates main multiverse universe
 DEV
 $ sudo dpkg --add-architecture arm64
 $ sudo apt-get update || echo "continuing after 'apt-get update'"
-$ sudo apt-get install -y gcc-8-aarch64-linux-gnu g++-8-aarch64-linux-gnu ninja-build python3-venv
+$ compiler_version=10
+$ sudo apt-get install -y gcc-${compiler_version}-aarch64-linux-gnu g++-${compiler_version}-aarch64-linux-gnu python3-venv
 $ sudo apt-get install -y libssl-dev:arm64 libcurl4-openssl-dev:arm64 liblzma-dev:arm64
 
 # MongoDB Instructions
 
-$ git clone -b r6.2.0 git@github.com:mongodb/mongo.git r6.2.0
-$ cd r6.2.0
+$ git clone -b r6.0.5 git@github.com:mongodb/mongo.git r6.0.5
+$ cd r6.0.5
 $ python3 -m venv python3-venv
 $ source python3-venv/bin/activate
 $ python -m pip install "pip==21.0.1"
@@ -88,11 +66,10 @@ $ python -m pip install keyring jsonschema memory_profiler puremagic networkx cx
 # CXX: C++ compiler
 
 # Should take less than a minute.
-$ \time --verbose python3 buildscripts/scons.py -j$(($(grep -c processor /proc/cpuinfo)-1)) AR=/usr/bin/aarch64-linux-gnu-ar CC=/usr/bin/aarch64-linux-gnu-gcc-8 CXX=/usr/bin/aarch64-linux-gnu-g++-8 CCFLAGS="-march=armv8-a+crc -mtune=cortex-a72" --dbg=off --opt=on --link-model=static --disable-warnings-as-errors --ninja generate-ninja NINJA_PREFIX=aarch64_gcc_s
+$ \time --verbose python3 buildscripts/scons.py -j$(($(grep -v processor /proc/cpuinfo)-1)) AR=/usr/bin/aarch64-linux-gnu-ar CC=/usr/bin/aarch64-linux-gnu-gcc-${compiler_version} CXX=/usr/bin/aarch64-linux-gnu-g++-${compiler_version} CCFLAGS="-march=armv8-a+crc -moutline-atomics -mtune=cortex-a72" --dbg=off --opt=on --link-model=static --disable-warnings-as-errors --ninja generate-ninja NINJA_PREFIX=aarch64_gcc_s VARIANT_DIR=aarch64_gcc_s DESTDIR=aarch64_gcc_s
 
 # Will take several hours and depends heavily on your machine's capabilities. Almost 4 hours on my machine.
 $ \time --verbose ninja -f aarch64_gcc_s.ninja -j$(($(grep -c processor /proc/cpuinfo)-1)) install-devcore # For MongoDB 6.x+
-$ \time --verbose ninja -f aarch64_gcc_s.ninja -j$(($(grep -c processor /proc/cpuinfo)-1)) install-core    # For MongoDB 5.x
 
 # Minimize size of executables for embedded use by removing symbols
 $ mv build/install/bin/mongo build/install/bin/mongo.debug
@@ -103,12 +80,12 @@ $ aarch64-linux-gnu-strip build/install/bin/mongod.debug -o build/install/bin/mo
 $ aarch64-linux-gnu-strip build/install/bin/mongos.debug -o build/install/bin/mongos
 
 # Generate release (on Mac OS)
-$ tar --gname root --uname root -czvf mongodb.ce.pi.r6.2.0.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
+$ tar --gname root --uname root -czvf mongodb.ce.pi.r6.0.5.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
 ```
 
 ## Installing on Raspberry Pi
 
-- Ensure Raspberry Pi meets minimum HW requirements. Must be 4+, 4GB RAM+.
+- Ensure Raspberry Pi meets minimum HW requirements. I have only installed on a 4GB Raspberry Pi 4. Unknown how Pi's with lower specs will fare.
 
 - Ensure a [64-bit Raspberry Pi OS](https://www.raspberrypi.com/software/operating-systems/) has been installed on the Pi.
 
@@ -117,8 +94,8 @@ $ tar --gname root --uname root -czvf mongodb.ce.pi.r6.2.0.tar.gz LICENSE-Commun
 ```
 # Using wget assumes network connection. Can also copy with USB.
 $ mkdir ~/mdb-binaries && cd ~/mdb-binaries
-$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.2.0-rpi-unofficial/mongodb.ce.pi.r6.2.0.tar.gz
-$ tar xzvf mongodb.ce.pi.r6.2.0.tar.gz # Decompress tarball
+$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.0.5-rpi-unofficial/mongodb.ce.pi.r6.0.5.tar.gz
+$ tar xzvf mongodb.ce.pi.r6.0.5.tar.gz # Decompress tarball
 
 # Prepare MongoDB data & log directories
 $ mkdir -p /data/db/ts_test_db
