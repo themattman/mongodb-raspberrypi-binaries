@@ -8,9 +8,13 @@ These are a best-effort attempt to create binaries of the MongoDB Community Edit
 
 [Time-Series Collections](https://www.mongodb.com/docs/v6.0/core/timeseries-collections/) are a relatively new MongoDB feature that provide a meaningful improvement for common embedded workloads, like sensor aggregation on a Raspberry Pi. Prior to this repo, users were required to build from source.
 
+## Docker Support?
+
+The binaries from this repo are packaged in a Docker container [here](https://github.com/themattman/mongodb-raspberrypi-docker).
+
 ## Notes
 
-MongoDB requires ARMv8.2-A+ [microarchitecture support](https://www.mongodb.com/docs/manual/administration/production-notes/#std-label-prod-notes-platform-considerations) as of MongoDB 5.0+.
+MongoDB officially requires ARMv8.2-A+ [microarchitecture support](https://www.mongodb.com/docs/manual/administration/production-notes/#std-label-prod-notes-platform-considerations) as of MongoDB 5.0+. The Raspberry Pi 4 runs on ARMv8.0-A. These binaries are a best-effort at preserving functionality below minimum hardware specs.
 
 These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r6.0.5/LICENSE-Community.txt).
 
