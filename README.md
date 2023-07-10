@@ -85,8 +85,8 @@ $ aarch64-linux-gnu-strip build/install/bin/mongo.debug -o build/install/bin/mon
 $ aarch64-linux-gnu-strip build/install/bin/mongod.debug -o build/install/bin/mongod
 $ aarch64-linux-gnu-strip build/install/bin/mongos.debug -o build/install/bin/mongos
 
-# Generate release (on Mac OS)
-$ tar --gname root --uname root -czvf mongodb.ce.pi.r6.0.5.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
+# Generate release
+$ tar --group root --owner root -czvf mongodb.ce.pi.r6.0.7.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
 ```
 
 ## Installing on Raspberry Pi
