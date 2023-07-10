@@ -20,6 +20,8 @@ These binaries are subject to the [MongoDB Server-Side Public License](https://g
 
 ## Releases
 
+- [_r6.0.7_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.5-rpi-unofficial) [July 10, 2023]
+
 - [_r6.0.5_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.5-rpi-unofficial) [April 10, 2023]
 
 - [_r6.2.0_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.2.0-rpi-unofficial) [January 12, 2023]
@@ -53,8 +55,8 @@ $ sudo apt-get install -y libssl-dev:arm64 libcurl4-openssl-dev:arm64 liblzma-de
 
 # MongoDB Instructions
 
-$ git clone -b r6.0.5 git@github.com:mongodb/mongo.git r6.0.5
-$ cd r6.0.5
+$ git clone -b r6.0.7 git@github.com:mongodb/mongo.git r6.0.7
+$ cd r6.0.7
 $ python3 -m venv python3-venv
 $ source python3-venv/bin/activate
 $ python -m pip install "pip==21.0.1"
@@ -98,8 +100,8 @@ $ tar --gname root --uname root -czvf mongodb.ce.pi.r6.0.5.tar.gz LICENSE-Commun
 ```
 # Using wget assumes network connection. Can also copy with USB.
 $ mkdir ~/mdb-binaries && cd ~/mdb-binaries
-$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.0.5-rpi-unofficial/mongodb.ce.pi.r6.0.5.tar.gz
-$ tar xzvf mongodb.ce.pi.r6.0.5.tar.gz # Decompress tarball
+$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.0.7-rpi-unofficial/mongodb.ce.pi.r6.0.7.tar.gz
+$ tar xzvf mongodb.ce.pi.r6.0.7.tar.gz # Decompress tarball
 
 # Prepare MongoDB data & log directories
 $ mkdir -p /data/db/ts_test_db
