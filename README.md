@@ -55,7 +55,7 @@ $ sudo apt-get install -y libssl-dev:arm64 libcurl4-openssl-dev:arm64 liblzma-de
 
 # MongoDB Instructions
 
-$ git clone -b r6.0.7 git@github.com:mongodb/mongo.git r6.0.7
+$ git clone -b r6.0.7 https://github.com/mongodb/mongo.git r6.0.7
 $ cd r6.0.7
 $ python3 -m venv python3-venv
 $ source python3-venv/bin/activate
