@@ -16,9 +16,11 @@ The binaries from this repo are packaged in a Docker container [here](https://gi
 
 MongoDB officially requires ARMv8.2-A+ [microarchitecture support](https://www.mongodb.com/docs/manual/administration/production-notes/#std-label-prod-notes-platform-considerations) as of MongoDB 5.0+. The Raspberry Pi 4 runs on ARMv8.0-A. These binaries are a best-effort at preserving functionality below minimum hardware specs.
 
-These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r6.0.5/LICENSE-Community.txt).
+These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r6.0.8/LICENSE-Community.txt).
 
 ## Releases
+
+- [_r6.0.8_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.8-rpi-unofficial) [August 24, 2023]
 
 - [_r6.0.7_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.7-rpi-unofficial) [July 10, 2023]
 
@@ -33,7 +35,9 @@ These binaries are subject to the [MongoDB Server-Side Public License](https://g
 
 - Instructions are for an Ubuntu 20.04 (focal) build environment. Ubuntu 18.04 was notably more difficult on my first attempt.
 
-- Built using [WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) on Windows 10 with Intel Kaby Lake i7 CPU & 16GB RAM.
+- Beginning August 2023 and after: Built using a cluster of 3 Raspberry Pi 4B's using [ice cream](https://github.com/icecc/icecream).
+
+- Prior to August 2023: Built using [WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) on Windows 10 with Intel Kaby Lake i7 CPU & 16GB RAM.
 
 - Due to the hassle of installing special packages, it is recommended to set up a custom build environment using a VM, LXC container, Docker container, WSL, etc.
 
@@ -55,8 +59,8 @@ $ sudo apt-get install -y libssl-dev:arm64 libcurl4-openssl-dev:arm64 liblzma-de
 
 # MongoDB Instructions
 
-$ git clone -b r6.0.7 https://github.com/mongodb/mongo.git r6.0.7
-$ cd r6.0.7
+$ git clone -b r6.0.8 https://github.com/mongodb/mongo.git r6.0.8
+$ cd r6.0.8
 $ python3 -m venv python3-venv
 $ source python3-venv/bin/activate
 $ python -m pip install "pip==21.0.1"
@@ -78,15 +82,18 @@ $ \time --verbose python3 buildscripts/scons.py -j$(($(grep -v processor /proc/c
 $ \time --verbose ninja -f aarch64_gcc_s.ninja -j$(($(grep -c processor /proc/cpuinfo)-1)) install-devcore # For MongoDB 6.x+
 
 # Minimize size of executables for embedded use by removing symbols
-$ mv build/install/bin/mongo build/install/bin/mongo.debug
-$ mv build/install/bin/mongod build/install/bin/mongod.debug
-$ mv build/install/bin/mongos build/install/bin/mongos.debug
-$ aarch64-linux-gnu-strip build/install/bin/mongo.debug -o build/install/bin/mongo
-$ aarch64-linux-gnu-strip build/install/bin/mongod.debug -o build/install/bin/mongod
-$ aarch64-linux-gnu-strip build/install/bin/mongos.debug -o build/install/bin/mongos
+pushd aarch64_gcc_s/bin
+$ mv mongo mongo.debug
+$ mv mongod mongod.debug
+$ mv mongos mongos.debug
+$ aarch64-linux-gnu-strip mongo.debug -o mongo
+$ aarch64-linux-gnu-strip mongod.debug -o mongod
+$ aarch64-linux-gnu-strip mongos.debug -o mongos
 
-# Generate release
-$ tar --group root --owner root -czvf mongodb.ce.pi.r6.0.7.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
+# Generate release (on Mac OS)
+$ tar --gname root --uname root -czvf mongodb.ce.pi.r6.0.8.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
+# Generate release (on Linux)
+$ tar --group root --owner root -czvf mongodb.ce.pi.r6.0.8.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
 ```
 
 ## Installing on Raspberry Pi
@@ -100,8 +107,8 @@ $ tar --group root --owner root -czvf mongodb.ce.pi.r6.0.7.tar.gz LICENSE-Commun
 ```
 # Using wget assumes network connection. Can also copy with USB.
 $ mkdir ~/mdb-binaries && cd ~/mdb-binaries
-$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.0.7-rpi-unofficial/mongodb.ce.pi.r6.0.7.tar.gz
-$ tar xzvf mongodb.ce.pi.r6.0.7.tar.gz # Decompress tarball
+$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.0.8-rpi-unofficial/mongodb.ce.pi.r6.0.8.tar.gz
+$ tar xzvf mongodb.ce.pi.r6.0.8.tar.gz # Decompress tarball
 
 # Prepare MongoDB data & log directories
 $ mkdir -p /data/db/ts_test_db
