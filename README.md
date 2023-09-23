@@ -20,6 +20,8 @@ These binaries are subject to the [MongoDB Server-Side Public License](https://g
 
 ## Releases
 
+- [_r6.0.10_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.10-rpi-unofficial) [September 23, 2023]
+
 - [_r6.0.10_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.10-rpi-unofficial) [September 21, 2023]
 
 - [_r7.0.1_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.1-rpi-unofficial) [September 19, 2023]
