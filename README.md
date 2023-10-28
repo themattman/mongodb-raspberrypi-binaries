@@ -121,12 +121,12 @@ $ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/downl
 $ tar xzvf mongodb.ce.pi.r7.0.2.tar.gz # Decompress tarball
 
 # Prepare MongoDB data & log directories
-$ mkdir -p /data/db/ts_test_db
-$ mkdir -p /data/db/ts_test_db_log
+$ mkdir -p /data/db/test_db
+$ touch /data/db/test_db/mongod.log
 $ sudo chown -R ${USER}:${USER} /data
 
 # Run & Configure MongoDB Standalone Local Server
-$ ./mongod --dbpath /data/db/ts_test_db --fork --logpath /data/db/ts_test_db_log --port 28080
+$ ./mongod --dbpath /data/db/test_db --fork --logpath /data/db/test_db/mongod.log --port 28080
 $ ./mongo --port 28080 # run queries!
 ```
 
