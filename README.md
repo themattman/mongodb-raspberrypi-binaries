@@ -16,9 +16,11 @@ The binaries from this repo are packaged in a Docker container [here](https://gi
 
 MongoDB officially requires ARMv8.2-A+ [microarchitecture support](https://www.mongodb.com/docs/manual/administration/production-notes/#std-label-prod-notes-platform-considerations) as of MongoDB 5.0+. The Raspberry Pi 4 runs on ARMv8.0-A. These binaries are a best-effort at preserving functionality below minimum hardware specs.
 
-These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r6.0.11/LICENSE-Community.txt).
+These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r7.0.2/LICENSE-Community.txt).
 
 ## Releases
+
+- [_r7.0.2_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.2-rpi-unofficial) [October 27, 2023]
 
 - [_r6.0.11_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.11-rpi-unofficial) [October 25, 2023]
 
@@ -67,8 +69,8 @@ $ sudo apt-get install -y libssl-dev:arm64 libcurl4-openssl-dev:arm64 liblzma-de
 
 # MongoDB Instructions
 
-$ git clone -b r6.0.11 git@github.com:mongodb/mongo.git r6.0.11
-$ cd r6.0.11
+$ git clone -b r7.0.2 git@github.com:mongodb/mongo.git r7.0.2
+$ cd r7.0.2
 $ python3 -m venv python3-venv
 $ source python3-venv/bin/activate
 $ python -m pip install "pip==21.0.1"
@@ -99,9 +101,9 @@ $ aarch64-linux-gnu-strip mongod.debug -o mongod
 $ aarch64-linux-gnu-strip mongos.debug -o mongos
 
 # Generate release (on Mac OS)
-$ tar --gname root --uname root -czvf mongodb.ce.pi.r6.0.11.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
+$ tar --gname root --uname root -czvf mongodb.ce.pi.r7.0.2.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
 # Generate release (on Linux)
-$ tar --group root --owner root -czvf mongodb.ce.pi.r6.0.11.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
+$ tar --group root --owner root -czvf mongodb.ce.pi.r7.0.2.tar.gz LICENSE-Community.txt README.md mongo{d,,s}
 ```
 
 ## Installing on Raspberry Pi
@@ -115,16 +117,16 @@ $ tar --group root --owner root -czvf mongodb.ce.pi.r6.0.11.tar.gz LICENSE-Commu
 ```
 # Using wget assumes network connection. Can also copy with USB.
 $ mkdir ~/mdb-binaries && cd ~/mdb-binaries
-$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.0.11-rpi-unofficial/mongodb.ce.pi.r6.0.11.tar.gz
-$ tar xzvf mongodb.ce.pi.r6.0.11.tar.gz # Decompress tarball
+$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r7.0.2-rpi-unofficial/mongodb.ce.pi.r7.0.2.tar.gz
+$ tar xzvf mongodb.ce.pi.r7.0.2.tar.gz # Decompress tarball
 
 # Prepare MongoDB data & log directories
-$ mkdir -p /data/db/test_db
-$ touch /data/db/test_db/mongod.log
+$ mkdir -p /data/db/ts_test_db
+$ mkdir -p /data/db/ts_test_db_log
 $ sudo chown -R ${USER}:${USER} /data
 
 # Run & Configure MongoDB Standalone Local Server
-$ ./mongod --dbpath /data/db/test_db --fork --logpath /data/db/test_db/mongod.log --port 28080
+$ ./mongod --dbpath /data/db/ts_test_db --fork --logpath /data/db/ts_test_db_log --port 28080
 $ ./mongo --port 28080 # run queries!
 ```
 
