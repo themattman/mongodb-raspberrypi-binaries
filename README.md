@@ -24,9 +24,11 @@ MongoDB officially requires ARMv8.2-A+ [microarchitecture support](https://www.m
 
 However, the Raspberry Pi 5 does meet the minimum hardware requirements with its newer CPU.
 
-These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r7.0.4/LICENSE-Community.txt).
+These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r6.0.12/LICENSE-Community.txt).
 
 ## Releases
+
+- [_r6.0.12_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.12-rpi-unofficial) [January 03, 2024]
 
 - [_r7.0.4_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.4-rpi-unofficial) [December 10, 2023]
 
@@ -52,7 +54,6 @@ These binaries are subject to the [MongoDB Server-Side Public License](https://g
 
 - [_r6.1.0-rc4_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.1.0-rc4-rpi-unofficial) [October 3, 2022]
 
-
 ## Installing on Raspberry Pi
 
 - Ensure Raspberry Pi meets minimum HW requirements. I have only installed on a 4GB/8GB Raspberry Pi 4 & 8GB Raspberry Pi 5. Unknown how Pi's with lower specs will fare.
@@ -64,8 +65,8 @@ These binaries are subject to the [MongoDB Server-Side Public License](https://g
 ```
 # Using wget assumes network connection. Can also copy with USB.
 $ mkdir ~/mdb-binaries && cd ~/mdb-binaries
-$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r7.0.4-rpi-unofficial/mongodb.ce.pi4.r7.0.4.tar.gz
-$ tar xzvf mongodb.ce.pi4.r7.0.4.tar.gz # Decompress tarball
+$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.0.12-rpi-unofficial/mongodb.ce.pi4.r6.0.12.tar.gz
+$ tar xzvf mongodb.ce.pi4.r6.0.12.tar.gz # Decompress tarball
 
 # Prepare MongoDB data & log directories
 $ mkdir -p /data/db/test_db
