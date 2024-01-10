@@ -14,7 +14,7 @@ The binaries from this repo are packaged in a Docker container [here](https://gi
 
 ## Pi Support
 
-* Raspberry Pi 5: **New!!** Smoke-tested on real hardware. Beginning with [r7.0.3](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.3-rpi-unofficial).
+* Raspberry Pi 5: **New!!** Smoke-tested on real hardware. Beginning with [r7.0.3](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.3-rpi-unofficial) and [r6.0.12](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.12-rpi-unofficial).
 * Raspberry Pi 4: Tested. I have this running on real hardware with an uptime greater than one year.
 * Raspberry Pi 3: Untested, unlikely to work. May release a build in the future for this platform.
 
