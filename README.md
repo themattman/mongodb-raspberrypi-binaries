@@ -14,7 +14,7 @@ The binaries from this repo are packaged in a Docker container [here](https://gi
 
 ## Pi Support
 
-* Raspberry Pi 5: **New!!** Smoke-tested on real hardware. Beginning with [r7.0.3](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.3-rpi-unofficial).
+* Raspberry Pi 5: **New!!** Smoke-tested on real hardware. Beginning with [r7.0.3](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.3-rpi-unofficial) and [r6.0.12](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.12-rpi-unofficial).
 * Raspberry Pi 4: Tested. I have this running on real hardware with an uptime greater than one year.
 * Raspberry Pi 3: Untested, unlikely to work. May release a build in the future for this platform.
 
@@ -24,13 +24,13 @@ MongoDB officially requires ARMv8.2-A+ [microarchitecture support](https://www.m
 
 However, the Raspberry Pi 5 does meet the minimum hardware requirements with its newer CPU.
 
-These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r7.0.7/LICENSE-Community.txt).
+These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r6.0.14/LICENSE-Community.txt).
 
 ## Releases
 
-- [_r7.0.7_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.7-rpi-unofficial) [April 01, 2024]
+- [_r6.0.14_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.14-rpi-unofficial) [April 07, 2024]
 
-- [_r7.0.6_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.6-rpi-unofficial) [March 23, 2024]
+- [_r7.0.7_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.7-rpi-unofficial) [April 01, 2024]
 
 - [_r7.0.6_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.6-rpi-unofficial) [March 21, 2024]
 
@@ -75,8 +75,8 @@ These binaries are subject to the [MongoDB Server-Side Public License](https://g
 ```
 # Using wget assumes network connection. Can also copy with USB.
 $ mkdir ~/mdb-binaries && cd ~/mdb-binaries
-$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r7.0.7-rpi-unofficial/mongodb.ce.pi4.r7.0.7.tar.gz
-$ tar xzvf mongodb.ce.pi4.r7.0.7.tar.gz # Decompress tarball
+$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.0.14-rpi-unofficial/mongodb.ce.pi4.r6.0.14.tar.gz
+$ tar xzvf mongodb.ce.pi4.r6.0.14.tar.gz # Decompress tarball
 
 # Prepare MongoDB data & log directories
 $ mkdir -p /data/db/test_db
