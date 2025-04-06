@@ -28,6 +28,11 @@ These binaries are subject to the [MongoDB Server-Side Public License](https://g
 
 ## Releases
 
+### Raspberry Pi 5 Only
+- [_r8.0.4_](https://github.com/tototomate123/mongodb-raspberrypi-binaries/releases/tag/r8.0.4-rpi5) [April 6, 2025]
+
+
+### Raspberry Pi 4 and 5
 - [_r7.0.14_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.14-rpi-unofficial) [September 17, 2024]
 
 - [_r7.0.11_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.11-rpi-unofficial) [June 03, 2024]
