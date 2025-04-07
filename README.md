@@ -1,5 +1,6 @@
 # Unofficial MongoDB Community Edition Binaries for Raspberry Pi
-
+> [!NOTE]
+> The Raspberry Pi 5 is officially supported by Mongodb Inc. New releases after 8.0.4 will ***only*** be compiled for Raspberry Pi 4 on a best effort basis.
 ## Overview
 
 These are a best-effort attempt to create binaries of the MongoDB Community Edition Server for the Raspberry Pi ecosystem. MongoDB Inc does not officially support these binaries.
