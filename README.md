@@ -20,9 +20,9 @@ The binaries from this repo are packaged in a Docker container [here](https://gi
 
 ## Notes
 
-MongoDB officially requires ARMv8.2-A+ [microarchitecture support](https://www.mongodb.com/docs/manual/administration/production-notes/#std-label-prod-notes-platform-considerations) as of MongoDB 5.0+. The Raspberry Pi 4 runs on ARMv8.0-A. These binaries are a best-effort at preserving functionality below minimum hardware specs.
+MongoDB officially requires ARMv8.2-A+ [microarchitecture support](https://www.mongodb.com/docs/manual/administration/production-notes/#std-label-prod-notes-platform-considerations) as of MongoDB 5.0+. The Raspberry Pi 4 runs on ARMv8.0-A. These binaries are a best-effort at preserving functionality below minimum hardware specs. For further digging, see [WT-9256](https://jira.mongodb.org/browse/WT-9256) for understanding the risks of running MongoDB 5.0+ on a Pi 4 (i.e. an ARM CPU without Large System Extensions (LSE) atomics).
 
-However, the Raspberry Pi 5 does meet the minimum hardware requirements with its newer CPU.
+However, the Raspberry Pi 5 does meet the minimum hardware requirements with its newer CPU and I would encourage users to seek the MongoDB official binaries for ARM that are compatible with the Pi 5.
 
 These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r7.0.14/LICENSE-Community.txt).
 
