@@ -1,117 +1,85 @@
 # Unofficial MongoDB Community Edition Binaries for Raspberry Pi
+
 > [!NOTE]
 > The Raspberry Pi 5 is officially supported by Mongodb Inc. New releases after 8.0.4 will ***only*** be compiled for Raspberry Pi 4 on a best effort basis.
+
 ## Overview
 
-These are a best-effort attempt to create binaries of the MongoDB Community Edition Server for the Raspberry Pi ecosystem. MongoDB Inc does not officially support these binaries.
+This repository provides best-effort binaries of the MongoDB Community Edition Server for Raspberry Pi. These are not officially supported by MongoDB Inc.
+
+Earlier versions (MongoDB 6.x and 7.x) were maintained by [@themattman](https://github.com/themattman). My contributions start with MongoDB 8.0.4 for Raspberry Pi 5.
 
 ## Motivation
 
-[Time-Series Collections](https://www.mongodb.com/docs/v6.0/core/timeseries-collections/) are a relatively new MongoDB feature that provide a meaningful improvement for common embedded workloads, like sensor aggregation on a Raspberry Pi. Prior to this repo, users were required to build from source.
-
-## Docker Support?
-
-The binaries from this repo are packaged in a Docker container [here](https://github.com/themattman/mongodb-raspberrypi-docker).
+[Time-Series Collections](https://www.mongodb.com/docs/v6.0/core/timeseries-collections/) are especially useful for sensor workloads—common in Raspberry Pi projects. Building MongoDB from source used to be the only option. This project provides ready-to-run binaries instead.
 
 ## Pi Support
 
-* Raspberry Pi 5: **New!!** Smoke-tested on real hardware. Beginning with [r7.0.3](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.3-rpi-unofficial) and [r6.0.12](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.12-rpi-unofficial).
-* Raspberry Pi 4: Tested. I have this running on real hardware with an uptime greater than one year.
-* Raspberry Pi 3: Untested, unlikely to work. May release a build in the future for this platform.
+- **Raspberry Pi 5:** Compiled and tested [8.0.4](https://github.com/tototomate123/mongodb-raspberrypi-binaries/releases/tag/r8.0.4-rpi5) directly on a Pi 5. Since official MongoDB support now exists for this board, no future Pi 5 builds are planned unless requested. This release also includes optional install and uninstall scripts.
+
+- **Raspberry Pi 4:** Builds are maintained by themattman and have been tested extensively. I plan to provide an 8.x build for Pi 4 soon.
+
+- **Raspberry Pi 3:** Not supported and untested.
 
 ## Notes
 
-MongoDB officially requires ARMv8.2-A+ [microarchitecture support](https://www.mongodb.com/docs/manual/administration/production-notes/#std-label-prod-notes-platform-considerations) as of MongoDB 5.0+. The Raspberry Pi 4 runs on ARMv8.0-A. These binaries are a best-effort at preserving functionality below minimum hardware specs.
+MongoDB requires ARMv8.2-A+ as of version 5.0. Raspberry Pi 4 (ARMv8.0-A) is below spec, but unofficial builds work in practice. Raspberry Pi 5 meets all official requirements.
 
-However, the Raspberry Pi 5 does meet the minimum hardware requirements with its newer CPU.
+These binaries are released under the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r7.0.14/LICENSE-Community.txt).
 
-These binaries are subject to the [MongoDB Server-Side Public License](https://github.com/mongodb/mongo/blob/r7.0.14/LICENSE-Community.txt).
+## My Releases
 
-## Releases
+### Raspberry Pi 5
 
-### Raspberry Pi 5 Only
-- [_r8.0.4_](https://github.com/tototomate123/mongodb-raspberrypi-binaries/releases/tag/r8.0.4-rpi5) [April 6, 2025]
+- [r8.0.4](https://github.com/tototomate123/mongodb-raspberrypi-binaries/releases/tag/r8.0.4-rpi5) – April 6, 2025
+  - Last unofficial Pi 5 build unless requests arise. Includes optional install and uninstall scripts. Use official binaries going forward or open an issue for feedback.
 
+### Raspberry Pi 4
 
-### Raspberry Pi 4 and 5
-- [_r7.0.14_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.14-rpi-unofficial) [September 17, 2024]
+- r8.0.4 - coming soon
 
-- [_r7.0.11_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.11-rpi-unofficial) [June 03, 2024]
+### Older binaries for Pi 4 & 5 (compiled by @themattman)
 
-- [_r7.0.9_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.9-rpi-unofficial) [April 30, 2024]
-
-- [_r7.0.8_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.8-rpi-unofficial) [April 22, 2024]
-
-- [_r7.0.8_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.8-rpi-unofficial) [April 11, 2024]
-
-- [_r7.0.7_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.7-rpi-unofficial) [April 03, 2024]
-
-- [_r7.0.7_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.7-rpi-unofficial) [April 01, 2024]
-
-- [_r7.0.6_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.6-rpi-unofficial) [March 21, 2024]
-
-- [_r6.0.13_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.13-rpi-unofficial) [January 29, 2024]
-
-- [_r7.0.5_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.5-rpi-unofficial) [January 06, 2024]
-
-- [_r6.0.12_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.12-rpi-unofficial) [January 03, 2024]
-
-- [_r7.0.4_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.4-rpi-unofficial) [December 10, 2023]
-
-- [_r7.0.3_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.3-rpi-unofficial) [November 11, 2023]
-
-- [_r7.0.2_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.2-rpi-unofficial) [October 27, 2023]
-
-- [_r6.0.11_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.11-rpi-unofficial) [October 25, 2023]
-
-- [_r6.0.10_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.10-rpi-unofficial) [September 21, 2023]
-
-- [_r7.0.1_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.1-rpi-unofficial) [September 18, 2023]
-
-- [_r7.0.0_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.0-rpi-unofficial) [September 18, 2023]
-
-- [_r6.0.8_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.8-rpi-unofficial) [August 24, 2023]
-
-- [_r6.0.7_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.7-rpi-unofficial) [July 10, 2023]
-
-- [_r6.0.5_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.5-rpi-unofficial) [April 10, 2023]
-
-- [_r6.2.0_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.2.0-rpi-unofficial) [January 12, 2023]
-
-- [_r6.1.0-rc4_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.1.0-rc4-rpi-unofficial) [October 3, 2022]
+- [r7.0.14](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.14-rpi-unofficial) – Sept 17, 2024
+- [r7.0.11](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.11-rpi-unofficial) – June 3, 2024
+- [r7.0.9](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.9-rpi-unofficial) – April 30, 2024
 
 ## Installing on Raspberry Pi
+> [!NOTE]
+> This is only for @themattman binaries.
 
-- Ensure Raspberry Pi meets minimum HW requirements. I have only installed on a 4GB/8GB Raspberry Pi 4 & 8GB Raspberry Pi 5. Unknown how Pi's with lower specs will fare.
+Use a 64-bit Raspberry Pi OS. Default Raspbian is 32-bit and not compatible.
 
-- Ensure a [64-bit Raspberry Pi OS](https://www.raspberrypi.com/software/operating-systems/) has been installed on the Pi.
+```bash
+# Download & extract binary
+mkdir ~/mdb-binaries && cd ~/mdb-binaries
 
-  - Raspbian is 32-bit by default for maximum compatibility.
+# Example for Raspberry Pi 4 (older release by themattman):
+wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r7.0.14-rpi-unofficial/mongodb.ce.pi4.r7.0.14.tar.gz
 
+# Or for Raspberry Pi 5:
+# wget https://github.com/tototomate123/mongodb-raspberrypi-binaries/releases/download/r8.0.4-rpi5/mongodb.ce.pi5.r8.0.4.tar.gz
+
+# Extract
+tar xzvf mongodb.ce.pi4.r7.0.14.tar.gz
+
+# Set up DB path and logs
+sudo mkdir -p /data/db/test_db
+sudo touch /data/db/test_db/mongod.log
+sudo chown -R $(whoami):$(whoami) /data
+
+# Run MongoDB
+./mongod --dbpath /data/db/test_db --fork --logpath /data/db/test_db/mongod.log --port 28080
+
+# Connect
+./mongo --port 28080
 ```
-# Using wget assumes network connection. Can also copy with USB.
-$ mkdir ~/mdb-binaries && cd ~/mdb-binaries
-$ wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r7.0.14-rpi-unofficial/mongodb.ce.pi4.r7.0.14.tar.gz
-$ tar xzvf mongodb.ce.pi4.r7.0.14.tar.gz # Decompress tarball
 
-# Prepare MongoDB data & log directories
-$ mkdir -p /data/db/test_db
-$ touch /data/db/test_db/mongod.log
-$ sudo chown -R ${USER}:${USER} /data
+## Questions or Issues?
 
-# Run & Configure MongoDB Standalone Local Server
-$ ./mongod --dbpath /data/db/test_db --fork --logpath /data/db/test_db/mongod.log --port 28080
-$ ./mongo --port 28080 # run queries!
-```
+Please [open an issue](https://github.com/themattman/mongodb-raspberrypi-binaries/issues) and include:
 
-## Bugs / Requests
-
-File an [issue](https://github.com/themattman/mongodb-raspberrypi-binaries/issues) on Github. Please include:
-
-- hardware details
-
-- steps you've tried
-
-- error output
-
-- general feedback
+- Raspberry Pi model
+- OS details
+- Any error output
+- What you’ve tried so far
