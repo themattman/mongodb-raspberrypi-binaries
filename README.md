@@ -30,8 +30,6 @@ The binaries in this repo are subject to the [MongoDB Server-Side Public License
 
 - [_r7.0.28_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.28-rpi-unofficial) [December 31, 2025]
 
-- [_r7.0.28_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.28-rpi-unofficial) [December 31, 2025]
-
 - [_r7.0.14_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.14-rpi-unofficial) [September 24, 2024]
 
 - [_r7.0.11_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.11-rpi-unofficial) [June 03, 2024]
