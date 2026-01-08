@@ -28,12 +28,12 @@ If applicable, add screenshots to help explain your problem.
   - Version: [e.g. 6.2.0]
 
 **Raspberry Pi Device (please complete the following information):**
- - Raspberry Pi Hardware Version: [e.g. 4B]
- - OS: [e.g. Raspberry Pi OS, Debian]
- - Version [e.g. 11]
- - System Version [e.g. 32-bit, 64-bit]
+ - Raspberry Pi Hardware Version: [e.g. 4B] `cat /proc/cpuinfo | grep "Model" | cut -d':' -f2`
+ - OS: [e.g. Raspberry Pi OS, Debian] `lsb_release -is`
+ - Version [e.g. 11] `lsb_release -rs`
+ - Machine Architecture [e.g. aarch64] `uname -m`
 
-**Compilation Machine (please complete the following information):**
+**Compilation Machine (please complete the following information if applicable):**
  - OS: [e.g. Windows, Ubuntu]
  - Version [e.g. 10, 20.04]
 

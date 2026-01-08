@@ -14,9 +14,9 @@ The binaries from this repo are packaged in a Docker container [here](https://gi
 
 ## Pi Support
 
-* Raspberry Pi 5: **New!!** Smoke-tested on real hardware. Beginning with [r7.0.3](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.3-rpi-unofficial) and [r6.0.12](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.12-rpi-unofficial).
-* Raspberry Pi 4: Tested. I have this running on real hardware with an uptime greater than one year.
-* Raspberry Pi 3: Untested, unlikely to work. May release a build in the future for this platform.
+* Raspberry Pi 5: Tested on real hardware. Beginning with [r7.0.3](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.3-rpi-unofficial) and [r6.0.12](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.0.12-rpi-unofficial). Moving forward, I would recommend using the official MongoDB binaries as they are officially supported.
+* Raspberry Pi 4B (BCM2835): I have this running on real hardware with an uptime greater than one year.
+* Raspberry Pi 3B: Report of the binaries working here: [issues/23](https://github.com/themattman/mongodb-raspberrypi-binaries/issues/23) (thanks @baslking)
 
 ## Notes
 
@@ -72,13 +72,13 @@ The binaries in this repo are subject to the [MongoDB Server-Side Public License
 
 - [_r6.2.0_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.2.0-rpi-unofficial) [January 12, 2023]
 
-- ~~ [_r6.1.0-rc4_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.1.0-rc4-rpi-unofficial) [October 3, 2022] ~~
+~~- [_r6.1.0-rc4_](https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r6.1.0-rc4-rpi-unofficial) [October 3, 2022]~~ Not recommended to run release candidates. This was the first release I built.
 
 ## Installing on Raspberry Pi
 
-- Ensure Raspberry Pi meets minimum HW requirements. I have only installed on a 4GB/8GB Raspberry Pi 4 & 8GB Raspberry Pi 5. Unknown how Pi's with lower specs will fare.
+- Ensure Raspberry Pi meets minimum HW requirements. I have only installed on a 4GB/8GB Raspberry Pi 4 & 8GB Raspberry Pi 5.
 
-- Ensure a [64-bit Raspberry Pi OS](https://www.raspberrypi.com/software/operating-systems/) has been installed on the Pi.
+- Ensure a [64-bit Raspberry Pi OS](https://www.raspberrypi.com/software/operating-systems/) has been installed on the Pi, I use debian 11.
 
   - Raspbian is 32-bit by default for maximum compatibility.
 
@@ -103,6 +103,16 @@ $ ./mongo --port 28080 # run queries!
 File an [issue](https://github.com/themattman/mongodb-raspberrypi-binaries/issues) on Github. Please include:
 
 - hardware details
+
+```
+$ cat proc/cpuinfo | grep -E "(Hardware|Revision|Model)"
+```
+
+- Operating System details
+
+```
+$ lsb_release -a
+```
 
 - steps you've tried
 
